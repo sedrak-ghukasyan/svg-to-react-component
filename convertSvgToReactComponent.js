@@ -84,16 +84,39 @@ export default ${outputFileName};
   };
 
 
-const inputDirectoryPath = './svg-files';
-const outputDirectoryPath = './react-components';
+[
+    'arrows',
+    'business',
+    'communication',
+    'device',
+    'ecommerce',
+    'editor',
+    'education',
+    'files and folder',
+    'finance and payment',
+    'health',
+    'interface',
+    'menu',
+    'multimedia and audio',
+    'navigation maps',
+    'notes and task',
+    'shipping and delivery',
+    'smart house',
+    'social',
+    'time and date',
+    'user',
+].forEach(path => {
+    const inputDirectoryPath = `./svg-files/${path}/outline`;
+    const outputDirectoryPath = `./react-components/${path}/outline`;
 
-fs.readdir(inputDirectoryPath, (err, files) => {
-    if(err) throw err;
-
-    files.forEach((file) => {
-        if(file.endsWith('.svg')) {
-            const inputFilePath = `${inputDirectoryPath}/${file}`;
-            convertSvgToReactComponent(inputFilePath, outputDirectoryPath);
-        }
+    fs.readdir(inputDirectoryPath, (err, files) => {
+        if(err) throw err;
+    
+        files.forEach((file) => {
+            if(file.endsWith('.svg')) {
+                const inputFilePath = `${inputDirectoryPath}/${file}`;
+                convertSvgToReactComponent(inputFilePath, outputDirectoryPath);
+            }
+        });
     });
-});
+})
